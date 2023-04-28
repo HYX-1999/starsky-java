@@ -20,7 +20,7 @@ import org.apache.ibatis.jdbc.Null;
 @NoArgsConstructor
 public class Article {
     
-    private String id;
+    private Integer id;
     
     private Date createdAt;
     

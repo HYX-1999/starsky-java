@@ -5,5 +5,6 @@ import com.blog.domain.ResponseResult;
 import com.blog.domain.entity.Article;
 
 public interface ArticleService extends IService<Article> {
-    ResponseResult hotArticleList();
+
+    ResponseResult articleList(Integer current, Integer size);
 }

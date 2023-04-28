@@ -5,30 +5,33 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.blog.domain.ResponseResult;
 import com.blog.domain.entity.Article;
+import com.blog.domain.vo.ArticleListVo;
+import com.blog.domain.vo.PageVo;
 import com.blog.mapper.ArticleMapper;
 import com.blog.service.ArticleService;
+import com.blog.utils.BeanCopyUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> implements ArticleService {
 
     @Override
-    public ResponseResult hotArticleList() {
-        // 查询热门文章
-        LambdaQueryWrapper<Article> queryWrapper = new LambdaQueryWrapper<>();
-        // 按照更新时间排序
-        queryWrapper.orderByDesc(Article::getUpdatedAt);
-        // 最多只查询10条
-        Page<Article> page = new Page(1, 10);
-        page(page, queryWrapper);
 
-        List<Article> articles = page.getRecords();
+    public ResponseResult articleList(Integer current, Integer size) {
 
-        return ResponseResult.okResult(articles);
+        LambdaQueryWrapper<Article> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+
+        lambdaQueryWrapper.orderByDesc(Article::getUpdatedAt);
+
+        Page<Article> page = new Page<>(current, size);
+        page(page, lambdaQueryWrapper);
+        List<ArticleListVo> articleListVos = BeanCopyUtils.copyBeanList(page.getRecords(), ArticleListVo.class);
+        PageVo pageVo = new PageVo(articleListVos, page.getTotal());
+        return ResponseResult.okResult(pageVo);
     }
-
 }
 
 
