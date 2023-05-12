@@ -7,4 +7,6 @@ import com.blog.domain.entity.Article;
 public interface ArticleService extends IService<Article> {
 
     ResponseResult articleList(Integer current, Integer size);
+
+    ResponseResult getDetail(Long id);
 }

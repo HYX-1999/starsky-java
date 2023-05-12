@@ -8,6 +8,7 @@ com\blog\service\ArticleService.class
 com\blog\config\MbatisPlusConfig.class
 com\blog\mapper\ArticleMapper.class
 com\blog\domain\vo\ArticleListVo.class
+com\blog\domain\vo\ArticleDetailVo.class
 com\blog\service\CategoryService.class
 com\blog\utils\BeanCopyUtils.class
 com\blog\domain\vo\PageVo.class
