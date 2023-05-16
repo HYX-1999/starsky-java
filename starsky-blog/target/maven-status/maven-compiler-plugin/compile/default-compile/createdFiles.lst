@@ -1,3 +1,5 @@
 com\blog\controller\ArticleController.class
+com\blog\controller\BlogLoginController.class
 com\blog\BlogApplication.class
 com\blog\controller\CategoryController.class
+com\blog\config\SecurityConfig.class
