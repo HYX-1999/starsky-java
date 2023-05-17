@@ -1,4 +1,5 @@
 com\blog\domain\vo\CategoryVo.class
+com\blog\handler\security\AuthenticationEntryPointImpl.class
 com\blog\domain\entity\Category.class
 com\blog\mapper\CategoryMapper.class
 com\blog\config\FastJsonRedisSerializer.class
@@ -21,6 +22,9 @@ com\blog\config\MbatisPlusConfig.class
 com\blog\mapper\ArticleMapper.class
 com\blog\service\BlogLoginService.class
 com\blog\domain\vo\ArticleListVo.class
+com\blog\handler\security\AccessDeniedHandlerImpl.class
+com\blog\exception\SystemException.class
+com\blog\handler\exception\GlobalExceptionHandler.class
 com\blog\config\RedisConfig.class
 com\blog\service\CategoryService.class
 com\blog\domain\entity\LoginUser.class

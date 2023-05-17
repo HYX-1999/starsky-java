@@ -36,7 +36,7 @@ public class BlogLoginServiceImpl implements BlogLoginService {
         LoginUser loginUser = (LoginUser) authenticate.getPrincipal();
         String userId = loginUser.getUser().getId();
         String jwt = JwtUtil.createJWT(userId);
-        redisCache.setCacheObject("blogLogin:"+userId, loginUser);
+        redisCache.setCacheObject("blogLogin:" + userId, loginUser);
         UserInfoVo userInfoVo = BeanCopyUtils.copyBean(loginUser.getUser(), UserInfoVo.class);
         BlogUserLoginVo vo = new BlogUserLoginVo(jwt, userInfoVo);
         return ResponseResult.okResult(vo);
