@@ -1,9 +1,11 @@
 E:\learn\Java\Project\starsky-java\starsky-public\src\main\java\com\blog\mapper\ArticleMapper.java
 E:\learn\Java\Project\starsky-java\starsky-public\src\main\java\com\blog\service\impl\CategoryServiceImpl.java
+E:\learn\Java\Project\starsky-java\starsky-public\src\main\java\com\blog\service\impl\UserServiceImpl.java
 E:\learn\Java\Project\starsky-java\starsky-public\src\main\java\com\blog\utils\RedisCache.java
 E:\learn\Java\Project\starsky-java\starsky-public\src\main\java\com\blog\domain\entity\User.java
 E:\learn\Java\Project\starsky-java\starsky-public\src\main\java\com\blog\service\impl\UserDetailsServiceImpl.java
 E:\learn\Java\Project\starsky-java\starsky-public\src\main\java\com\blog\domain\entity\Category.java
+E:\learn\Java\Project\starsky-java\starsky-public\src\main\java\com\blog\service\UserService.java
 E:\learn\Java\Project\starsky-java\starsky-public\src\main\java\com\blog\domain\entity\LoginUser.java
 E:\learn\Java\Project\starsky-java\starsky-public\src\main\java\com\blog\mapper\UserMapper.java
 E:\learn\Java\Project\starsky-java\starsky-public\src\main\java\com\blog\domain\vo\BlogUserLoginVo.java
@@ -18,6 +20,7 @@ E:\learn\Java\Project\starsky-java\starsky-public\src\main\java\com\blog\domain\
 E:\learn\Java\Project\starsky-java\starsky-public\src\main\java\com\blog\domain\vo\ArticleDetailVo.java
 E:\learn\Java\Project\starsky-java\starsky-public\src\main\java\com\blog\config\RedisConfig.java
 E:\learn\Java\Project\starsky-java\starsky-public\src\main\java\com\blog\domain\ResponseResult.java
+E:\learn\Java\Project\starsky-java\starsky-public\src\main\java\com\blog\utils\SecurityUtils.java
 E:\learn\Java\Project\starsky-java\starsky-public\src\main\java\com\blog\handler\security\AuthenticationEntryPointImpl.java
 E:\learn\Java\Project\starsky-java\starsky-public\src\main\java\com\blog\handler\exception\GlobalExceptionHandler.java
 E:\learn\Java\Project\starsky-java\starsky-public\src\main\java\com\blog\mapper\CategoryMapper.java

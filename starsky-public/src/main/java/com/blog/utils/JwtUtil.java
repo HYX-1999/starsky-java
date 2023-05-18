@@ -19,13 +19,13 @@ public class JwtUtil {
     //有效期为
     public static final Long JWT_TTL = 24*60 * 60 *1000L;// 60 * 60 *1000  一个小时
     //设置秘钥明文
-    public static final String JWT_KEY = "starsky";
+    public static final String JWT_KEY = "sangeng";
 
     public static String getUUID(){
         String token = UUID.randomUUID().toString().replaceAll("-", "");
         return token;
     }
-    
+
     /**
      * 生成jtw
      * @param subject token中要存放的数据（json格式）
@@ -93,7 +93,7 @@ public class JwtUtil {
         SecretKey key = new SecretKeySpec(encodedKey, 0, encodedKey.length, "AES");
         return key;
     }
-    
+
     /**
      * 解析
      *
