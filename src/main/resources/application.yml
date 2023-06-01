@@ -1,0 +1,33 @@
+server:
+  # 端口
+  port: 8080
+spring:
+  # 应用名称
+  application:
+    name: BlogApplication
+  # mysql配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/blog?serverTimezone=Asia/Shanghai&allowMultiQueries=true&rewriteBatchedStatements=true
+    username: root
+    password: admin5698
+  # 文件上传限制
+  servlet:
+    multipart:
+      max-request-size: 100MB
+      max-file-size: 100MB
+# mybatisPlus配置
+mybatis-plus:
+  # mapper映射地址
+  mapper-locations: classpath:mapper/*.xml
+  # 实体类扫描包路径
+  type-aliases-package: com.blog.entity
+  configuration:
+    # sql打印
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    # 开启驼峰命名
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      # 数据库表前缀
+      logic-delete-field: delete_time
