@@ -1,7 +1,6 @@
 package com.blog.entity;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -20,8 +19,8 @@ import lombok.NoArgsConstructor;
  */
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class User {
     /**
      * 用户id
@@ -41,7 +40,7 @@ public class User {
     /**
      * deleteTime
      */
-    private Date deleteTime;
+    private LocalDateTime deleteTime;
     /**
      * 用户名
      */

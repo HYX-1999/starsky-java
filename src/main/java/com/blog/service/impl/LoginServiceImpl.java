@@ -9,6 +9,7 @@ import com.blog.service.LoginService;
 import com.blog.utils.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class LoginServiceImpl implements LoginService {
@@ -16,6 +17,7 @@ public class LoginServiceImpl implements LoginService {
     @Autowired
     private UserMapper userMapper;
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void register(RegisterDTO register) {
         User user = userMapper.selectOne(new LambdaQueryWrapper<User>().select(User::getUsername).eq(User::getUsername, register.getUsername()));
