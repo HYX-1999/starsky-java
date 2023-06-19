@@ -1,6 +1,7 @@
 package com.blog.entity;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -12,42 +13,35 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * 用户
+ * 分类
  */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class Category {
+
     /**
-     * 用户id
+     * 分类id
      */
     @TableId(type = IdType.AUTO)
     private String id;
+
+    /**
+     * 分类名
+     */
+    private String name;
+
     /**
      * 创建时间
      */
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
+
     /**
      * 更新时间
      */
     @TableField(fill = FieldFill.UPDATE)
     private LocalDateTime updateTime;
-    /**
-     * deleteTime
-     */
-    private LocalDateTime deleteTime;
-    /**
-     * 用户名
-     */
-    private String username;
-    /**
-     * 密码
-     */
-    private String password;
-    /**
-     * 角色
-     */
-    private Integer role;
 }
+
