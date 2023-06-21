@@ -6,9 +6,12 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.blog.entity.Category;
 import com.blog.mapper.CategoryMapper;
 import com.blog.model.dto.CategoryDTO;
+import com.blog.model.vo.CategoryVO;
 import com.blog.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * 分类业务接口实现类
@@ -30,5 +33,10 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
                                  .name(category.getName())
                                  .build();
         baseMapper.insert(newCategory);
+    }
+
+    @Override
+    public List<CategoryVO> listCategoryVO() {
+        return categoryMapper.selectCategoryVO();
     }
 }
