@@ -2,7 +2,9 @@ package com.blog.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.blog.entity.Category;
+import com.blog.model.vo.CategoryBackVO;
 import com.blog.model.vo.CategoryVO;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,6 +14,16 @@ import java.util.List;
  */
 @Repository
 public interface CategoryMapper extends BaseMapper<Category> {
+
+    /**
+     * 查询后台分类列表
+     *
+     * @param limit   页码
+     * @param size    大小
+     * @param keyword 关键字
+     * @return 后台分类列表
+     */
+    List<CategoryBackVO> selectCategoryBackVO(@Param("limit") Long limit, @Param("size") Long size, @Param("keyword") String keyword);
 
     /**
      * 查询分类列表

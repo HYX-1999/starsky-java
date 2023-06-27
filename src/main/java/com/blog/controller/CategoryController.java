@@ -3,7 +3,10 @@ package com.blog.controller;
 import cn.dev33.satoken.annotation.SaCheckPermission;
 import com.blog.annotation.VisitLogger;
 import com.blog.model.dto.CategoryDTO;
+import com.blog.model.dto.ConditionDTO;
+import com.blog.model.vo.CategoryBackVO;
 import com.blog.model.vo.CategoryVO;
+import com.blog.model.vo.PageResult;
 import com.blog.model.vo.Result;
 import com.blog.service.CategoryService;
 import io.swagger.annotations.Api;
@@ -25,6 +28,19 @@ public class CategoryController {
     private CategoryService categoryService;
 
     /**
+     * 查看后台分类列表
+     *
+     * @param condition 查询条件
+     * @return {@link CategoryBackVO} 后台分类
+     */
+    @ApiOperation(value = "查看后台分类列表")
+    @SaCheckPermission("blog:category:page")
+    @GetMapping("/admin/category/page")
+    public Result<PageResult<CategoryBackVO>> pageCategoryBackVO(ConditionDTO condition) {
+        return Result.success(categoryService.pageCategoryBackVO(condition));
+    }
+
+    /**
      * 添加分类
      *
      * @param category 分类信息
@@ -35,6 +51,28 @@ public class CategoryController {
     @PostMapping("/admin/category/add")
     public Result<?> addCategory(@Validated @RequestBody CategoryDTO category) {
         categoryService.addCategory(category);
+        return Result.success();
+    }
+
+    /**
+     * 删除分类
+     *
+     * @param categoryIdList 分类id集合
+     * @return {@link Result<>}
+     */
+    @ApiOperation(value = "删除分类")
+    @SaCheckPermission("blog:category:delete")
+    @DeleteMapping("/admin/category/delete")
+    public Result<?> deleteCategory(@RequestBody List<Integer> categoryIdList) {
+        categoryService.deleteCategory(categoryIdList);
+        return Result.success();
+    }
+
+    @ApiOperation(value = "修改分类")
+    @SaCheckPermission("blog:category:update")
+    @PutMapping("/admin/category/update")
+    public Result<?> updateCategory(@Validated @RequestBody CategoryDTO category) {
+        categoryService.updateCategory(category);
         return Result.success();
     }
 

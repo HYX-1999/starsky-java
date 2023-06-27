@@ -1,6 +1,5 @@
 package com.blog.entity;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
@@ -13,35 +12,50 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * 分类
+ * 文章
  */
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class Category {
+@NoArgsConstructor
+public class Article {
 
     /**
-     * 分类id
+     * 文章id
      */
     @TableId(type = IdType.AUTO)
     private Integer id;
 
     /**
-     * 分类名
+     * 文章分类
      */
-    private String name;
+    private Integer cid;
 
     /**
-     * 创建时间
+     * 文章缩略图
+     */
+    private String cover;
+
+    /**
+     * 文章标题
+     */
+    private String title;
+
+    /**
+     * 文章内容
+     */
+    private String content;
+
+    /**
+     * 发表时间
      */
     @TableField(fill = FieldFill.INSERT)
-    private LocalDateTime createTime;
+    private Date createTime;
 
     /**
      * 更新时间
      */
     @TableField(fill = FieldFill.UPDATE)
-    private LocalDateTime updateTime;
+    private Date updateTime;
 }
 

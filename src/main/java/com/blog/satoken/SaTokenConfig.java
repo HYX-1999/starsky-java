@@ -3,18 +3,24 @@ package com.blog.satoken;
 import cn.dev33.satoken.context.SaHolder;
 import cn.dev33.satoken.exception.NotLoginException;
 import cn.dev33.satoken.filter.SaServletFilter;
+import cn.dev33.satoken.interceptor.SaInterceptor;
 import cn.dev33.satoken.router.SaHttpMethod;
 import cn.dev33.satoken.router.SaRouter;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.dev33.satoken.util.SaResult;
 import cn.hutool.json.JSONUtil;
+import com.blog.interceptor.PageableInterceptor;
 import com.blog.model.vo.Result;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import static com.blog.enums.StatusCodeEnum.UNAUTHORIZED;
 
+/**
+ * SaToken配置
+ **/
 @Component
 public class SaTokenConfig implements WebMvcConfigurer {
 
@@ -29,6 +35,11 @@ public class SaTokenConfig implements WebMvcConfigurer {
     };
 
     private final long timeout = 600;
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new PageableInterceptor());
+    }
 
     @Bean
     public SaServletFilter getSaServletFilter() {
