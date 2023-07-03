@@ -3,13 +3,20 @@ package com.blog.controller;
 import cn.dev33.satoken.annotation.SaCheckPermission;
 import com.blog.model.vo.Result;
 import com.blog.service.BlogFileService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+/**
+ * 文件控制器
+ **/
+@Api(tags = "文件模块")
+@RestController
 public class BlogFileController {
 
     @Autowired

@@ -1,8 +1,13 @@
 package com.blog.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.blog.entity.BlogFile;
 import org.springframework.web.multipart.MultipartFile;
 
-public interface BlogFileService {
+/**
+ * 文件业务接口
+ */
+public interface BlogFileService extends IService<BlogFile> {
 
     /**
      * 上传文件
@@ -10,5 +15,5 @@ public interface BlogFileService {
      * @param file 文件
      * @param path 文件路径
      */
-    String uploadFile(MultipartFile file, String path);
+    void uploadFile(MultipartFile file, String path);
 }

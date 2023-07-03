@@ -30,7 +30,7 @@ public abstract class AbstractUploadStrategyImpl implements UploadStrategy {
                 upload(path, fileName, file.getInputStream());
             }
             // 返回文件访问路径
-            return getFileAccessUrl(path + fileName);
+            return getFileAccessUrl("/" + path + fileName);
         } catch (Exception e) {
             e.printStackTrace();
             throw new ServiceException("文件上传失败");

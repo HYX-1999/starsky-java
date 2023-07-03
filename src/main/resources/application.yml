@@ -16,6 +16,13 @@ spring:
     multipart:
       max-request-size: 100MB
       max-file-size: 100MB
+upload:
+  oss:
+    url: https://starsky-blog.oss-cn-guangzhou.aliyuncs.com
+    endpoint: oss-cn-guangzhou.aliyuncs.com
+    bucketName: starsky-blog
+    accessKeyId: LTAI5tLkaXEVDTEBhCq3BrC5
+    accesskeySecret: XZgD1rIfJoRUz4bbiMG1DQDbyNf4d7
 # mybatisPlus配置
 mybatis-plus:
   # mapper映射地址
