@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.blog.mapper.ArticleMapper">
+    <resultMap id="articleBackVO" type="com.blog.model.vo.ArticleBackVO">
+        <id column="id" property="id" />
+        <result column="cover" property="cover" />
+        <result column="title" property="title" />
+        <result column="cid" property="cid"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+    
+    <select id="countArticleBackVO" resultType="java.lang.Long">
+        SELECT COUNT(DISTINCT a.id)
+        FROM article a
+        <where>
+            <if test="condition.keyword != null">
+                and title like concat('%',#{condition.keyword},'%')
+            </if>
+            <if test="condition.cid != null">
+                and cid = #{condition.cid}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectArticleBackVO" resultMap="articleBackVO">
+        SELECT a.id,
+        cover,
+        title,
+        cid,
+        a.create_time
+        FROM (
+        SELECT id,
+        cover,
+        cid,
+        title,
+        create_time
+        FROM article
+        <where>
+            <if test="condition.keyword != null">
+                and title like concat('%',#{condition.keyword},'%')
+            </if>
+            <if test="condition.cid != null">
+                and cid = #{condition.cid}
+            </if>
+        </where>
+        ) a
+        LEFT JOIN category c ON a.cid = c.id
+    </select>
+</mapper>

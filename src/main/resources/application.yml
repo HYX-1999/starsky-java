@@ -21,8 +21,8 @@ upload:
     url: https://starsky-blog.oss-cn-guangzhou.aliyuncs.com
     endpoint: oss-cn-guangzhou.aliyuncs.com
     bucketName: starsky-blog
-    accessKeyId: LTAI5tLkaXEVDTEBhCq3BrC5
-    accesskeySecret: XZgD1rIfJoRUz4bbiMG1DQDbyNf4d7
+    accessKeyId: LTAI5tSCknRs7Ldu52rX7Yyo
+    accesskeySecret: bske2UaqlydJyOzm5mj42cm8apM9Hn
 # mybatisPlus配置
 mybatis-plus:
   # mapper映射地址

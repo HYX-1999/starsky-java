@@ -39,7 +39,7 @@ public class ConditionDTO {
      * 分类id
      */
     @ApiModelProperty(value = "分类id")
-    private Integer categoryId;
+    private Integer cid;
 
     /**
      * 标签id

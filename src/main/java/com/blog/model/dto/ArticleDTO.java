@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 /**
  * 文章DTO
@@ -42,7 +43,7 @@ public class ArticleDTO {
     /**
      * 分类名
      */
-    @NotBlank(message = "文章分类不能为空")
+    @NotNull(message = "文章分类不能为空")
     @ApiModelProperty(value = "分类名")
     private Integer cid;
 }
