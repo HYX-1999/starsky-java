@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.blog.entity.Article;
 import com.blog.model.dto.ConditionDTO;
 import com.blog.model.vo.ArticleBackVO;
+import com.blog.model.vo.ArticleInfoVO;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -32,4 +33,12 @@ public interface ArticleMapper extends BaseMapper<Article> {
      * @return 后台文章列表
      */
     List<ArticleBackVO> selectArticleBackVO(@Param("limit") Long limit, @Param("size") Long size, @Param("condition") ConditionDTO condition);
+
+    /**
+     * 根据id查询文章信息
+     *
+     * @param articleId 文章id
+     * @return 文章信息
+     */
+    ArticleInfoVO selectArticleInfoById(@Param("articleId") Integer articleId);
 }
