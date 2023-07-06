@@ -51,12 +51,26 @@ public class ArticleController {
     }
 
     /**
+     * 修改文章
+     *
+     * @param article 文章信息
+     * @return {@link Result<>}
+     */
+    @ApiOperation(value = "修改文章")
+    @SaCheckPermission("blog:article:update")
+    @PutMapping("/admin/article/update")
+    public Result<?> updateArticle(@Validated @RequestBody ArticleDTO article) {
+        articleService.updateArticle(article);
+        return Result.success();
+    }
+
+    /**
      * 获取文章详情
      *
      * @param articleId 文章id
      * @return {@link Result<ArticleInfoVO>} 后台文章
      */
-    @ApiOperation(value = "编辑文章")
+    @ApiOperation(value = "获取文章详情")
     @SaCheckPermission("blog:article:getInfo")
     @GetMapping("/admin/article/getInfo/{articleId}")
     public Result<ArticleInfoVO> getInfo(@PathVariable("articleId") Integer articleId) {

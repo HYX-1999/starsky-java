@@ -14,6 +14,7 @@ import com.blog.model.vo.ArticleInfoVO;
 import com.blog.model.vo.PageResult;
 import com.blog.service.ArticleService;
 import com.blog.strategy.UploadStrategy;
+import com.blog.utils.BeanCopyUtils;
 import com.blog.utils.FileUtils;
 import com.blog.utils.PageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +61,13 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
                                     .title(article.getTitle())
                                     .build();
         baseMapper.insert(newArticle);
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void updateArticle(ArticleDTO article) {
+        Article newArticle = BeanCopyUtils.copyBean(article, Article.class);
+        baseMapper.updateById(newArticle);
     }
 
     @Override

@@ -1,11 +1,8 @@
 package com.blog.model.vo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-
-import java.util.List;
 
 /**
  * 文章信息
@@ -21,11 +18,10 @@ public class ArticleInfoVO {
     private Integer id;
 
     /**
-     * 分类id
+     * 文章分类id
      */
-    @JsonIgnore
-    @ApiModelProperty(value = "分类id")
-    private Integer cId;
+    @ApiModelProperty(value = "文章分类ID")
+    private Integer cid;
 
     /**
      * 文章缩略图

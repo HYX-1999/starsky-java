@@ -47,4 +47,14 @@
         ) a
         LEFT JOIN category c ON a.cid = c.id
     </select>
+
+    <select id="selectArticleInfoById" resultType="com.blog.model.vo.ArticleInfoVO">
+        select id,
+               cid,
+               cover,
+               title,
+               content
+        from article
+        where id = #{articleId}
+    </select>
 </mapper>

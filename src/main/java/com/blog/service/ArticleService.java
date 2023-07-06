@@ -30,7 +30,14 @@ public interface ArticleService extends IService<Article> {
     void addArticle(ArticleDTO article);
 
     /**
-     * 编辑文章
+     * 修改文章
+     *
+     * @param article 文章
+     */
+    void updateArticle(ArticleDTO article);
+
+    /**
+     * 获取文章详情
      *
      * @param articleId 文章id
      * @return 文章
