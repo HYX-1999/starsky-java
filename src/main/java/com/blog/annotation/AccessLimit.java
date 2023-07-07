@@ -2,6 +2,9 @@ package com.blog.annotation;
 
 import java.lang.annotation.*;
 
+/**
+ * Redis限流注解
+ */
 @Documented
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)

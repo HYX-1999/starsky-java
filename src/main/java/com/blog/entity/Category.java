@@ -30,7 +30,7 @@ public class Category {
     /**
      * 分类名
      */
-    private String name;
+    private String categoryName;
 
     /**
      * 创建时间

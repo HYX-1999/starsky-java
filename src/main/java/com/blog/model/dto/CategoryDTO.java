@@ -24,5 +24,5 @@ public class CategoryDTO {
      */
     @NotBlank(message = "分类名不能为空")
     @ApiModelProperty(value = "分类名")
-    private String name;
+    private String categoryName;
 }

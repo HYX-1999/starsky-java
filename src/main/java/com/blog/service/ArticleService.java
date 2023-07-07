@@ -5,6 +5,7 @@ import com.blog.entity.Article;
 import com.blog.model.dto.ArticleDTO;
 import com.blog.model.dto.ConditionDTO;
 import com.blog.model.vo.ArticleBackVO;
+import com.blog.model.vo.ArticleHomeVO;
 import com.blog.model.vo.ArticleInfoVO;
 import com.blog.model.vo.PageResult;
 import org.springframework.web.multipart.MultipartFile;
@@ -51,4 +52,11 @@ public interface ArticleService extends IService<Article> {
      * @return 文章图片地址
      */
     String saveArticleImages(MultipartFile file);
+
+    /**
+     * 查看首页文章列表
+     *
+     * @return 首页文章列表
+     */
+    PageResult<ArticleHomeVO> listArticleHomeVO();
 }

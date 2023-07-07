@@ -4,10 +4,24 @@
 <mapper namespace="com.blog.mapper.ArticleMapper">
     <resultMap id="articleBackVO" type="com.blog.model.vo.ArticleBackVO">
         <id column="id" property="id" />
-        <result column="cover" property="cover" />
-        <result column="title" property="title" />
-        <result column="cid" property="cid"/>
+        <result column="article_cover" property="articleCover" />
+        <result column="article_title" property="articleTitle" />
+        <result column="category_id" property="categoryId"/>
+        <result column="is_delete" property="isDelete"/>
+        <result column="status" property="status"/>
         <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <resultMap id="articleHomeVO" type="com.blog.model.vo.ArticleHomeVO">
+        <id column="id" property="id" />
+        <result column="article_cover" property="articleCover"/>
+        <result column="article_title" property="articleTitle"/>
+        <result column="article_content" property="articleContent"/>
+        <result column="create_time" property="createTime"/>
+        <association property="category" javaType="com.blog.model.vo.CategoryOptionVO">
+            <id column="category_id" property="id"/>
+            <result column="category_name" property="categoryName"/>
+        </association>
     </resultMap>
     
     <select id="countArticleBackVO" resultType="java.lang.Long">
@@ -15,46 +29,82 @@
         FROM article a
         <where>
             <if test="condition.keyword != null">
-                and title like concat('%',#{condition.keyword},'%')
+                and article_title like concat('%',#{condition.keyword},'%')
             </if>
-            <if test="condition.cid != null">
-                and cid = #{condition.cid}
+            <if test="condition.status != null">
+                and `status` = #{condition.status}
+            </if>
+            <if test="condition.categoryId != null">
+                and category_id = #{condition.categoryId}
             </if>
         </where>
     </select>
 
     <select id="selectArticleBackVO" resultMap="articleBackVO">
         SELECT a.id,
-        cover,
-        title,
-        cid,
-        a.create_time
+        article_cover,
+        article_title,
+        category_id,
+        a.is_delete,
+        a.`status`,
+        a.create_time,
         FROM (
         SELECT id,
-        cover,
-        cid,
-        title,
+        article_cover,
+        category_id,
+        article_title,
+        is_delete,
+        `status`,
         create_time
         FROM article
         <where>
+            is_delete = #{condition.isDelete}
             <if test="condition.keyword != null">
-                and title like concat('%',#{condition.keyword},'%')
+                and article_title like concat('%',#{condition.keyword},'%')
             </if>
-            <if test="condition.cid != null">
-                and cid = #{condition.cid}
+            <if test="condition.status != null">
+                and status = #{condition.status}
+            </if>
+            <if test="condition.categoryId != null">
+                and category_id = #{condition.categoryId}
             </if>
         </where>
         ) a
-        LEFT JOIN category c ON a.cid = c.id
+        LEFT JOIN category c ON a.category_id = c.id
     </select>
 
     <select id="selectArticleInfoById" resultType="com.blog.model.vo.ArticleInfoVO">
         select id,
-               cid,
-               cover,
-               title,
-               content
+               category_id,
+               article_cover,
+               article_title,
+               article_content,
+               `status`
         from article
         where id = #{articleId}
+    </select>
+
+    <select id="selectArticleHomeList" resultMap="articleHomeVO">
+        SELECT a.id,
+               article_cover,
+               article_title,
+               substring(article_content, 1, 500) AS article_content,
+               a.create_time,
+               a.category_id,
+               category_name
+        FROM (
+            SELECT id,
+                   article_cover,
+                   article_title,
+                   article_content,
+                   create_time,
+                   category_id
+            FROM article
+            WHERE is_delete = 0
+              AND `status` = 1
+            ORDER BY id DESC LIMIT #{limit}, #{size}
+        ) a
+            INNER JOIN category c ON a.category_id = c.id
+        ORDER BY a.id DESC
     </select>
 </mapper>

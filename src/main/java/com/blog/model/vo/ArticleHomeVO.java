@@ -1,18 +1,17 @@
-package com.blog.model.dto;
+package com.blog.model.vo;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
 /**
- * 文章DTO
+ * 文章首页VO
  **/
 @Data
-@ApiModel(description = "文章DTO")
-public class ArticleDTO {
+@ApiModel(description = "文章首页VO")
+public class ArticleHomeVO {
 
     /**
      * 文章id
@@ -29,27 +28,24 @@ public class ArticleDTO {
     /**
      * 文章标题
      */
-    @NotBlank(message = "文章标题不能为空")
     @ApiModelProperty(value = "文章标题")
     private String articleTitle;
 
     /**
      * 文章内容
      */
-    @NotBlank(message = "文章内容不能为空")
     @ApiModelProperty(value = "文章内容")
     private String articleContent;
 
     /**
-     * 分类名
+     * 文章分类
      */
-    @NotNull(message = "文章分类不能为空")
-    @ApiModelProperty(value = "分类ID")
-    private Integer categoryId;
+    @ApiModelProperty(value = "文章分类")
+    private CategoryOptionVO category;
 
     /**
-     * 状态 (1公开 2私密 3草稿)
+     * 发表时间
      */
-    @ApiModelProperty(value = "状态 (1公开 2私密 3草稿)")
-    private Integer status;
+    @ApiModelProperty(value = "发表时间")
+    private LocalDateTime createTime;
 }

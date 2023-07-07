@@ -37,7 +37,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
     public PageResult<CategoryBackVO> pageCategoryBackVO(ConditionDTO condition) {
         // 查询分类数量
         Long total = categoryMapper.selectCount(new LambdaQueryWrapper<Category>()
-                .like(StringUtils.hasText(condition.getKeyword()), Category::getName,
+                .like(StringUtils.hasText(condition.getKeyword()), Category::getCategoryName,
                         condition.getKeyword()));
         if (total == 0) {
             return new PageResult<>();
@@ -52,11 +52,11 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
     public void addCategory(CategoryDTO category) {
         // 分类是否存在
         Category existCategory = categoryMapper.selectOne(new LambdaQueryWrapper<Category>().select(Category::getId)
-                                                                                        .eq(Category::getName, category.getName()));
-        Assert.isNull(existCategory, category.getName() + "分类已存在");
+                                                                                        .eq(Category::getCategoryName, category.getCategoryName()));
+        Assert.isNull(existCategory, category.getCategoryName() + "分类已存在");
         // 添加新分类
         Category newCategory = Category.builder()
-                                 .name(category.getName())
+                                 .categoryName(category.getCategoryName())
                                  .build();
         baseMapper.insert(newCategory);
     }
@@ -64,7 +64,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
     @Override
     public void deleteCategory(List<Integer> categoryIdList) {
         // 分类下是否有文章
-        Long count = articleMapper.selectCount(new LambdaQueryWrapper<Article>().in(Article::getCid, categoryIdList));
+        Long count = articleMapper.selectCount(new LambdaQueryWrapper<Article>().in(Article::getCategoryId, categoryIdList));
         Assert.isFalse(count > 0, "删除失败，分类下存在文章");
         // 批量删除分类
         categoryMapper.deleteBatchIds(categoryIdList);
@@ -75,13 +75,13 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
         // 分类是否存在
         Category existCategory = categoryMapper.selectOne(new LambdaQueryWrapper<Category>()
                 .select(Category::getId)
-                .eq(Category::getName, category.getName()));
+                .eq(Category::getCategoryName, category.getCategoryName()));
         Assert.isFalse(Objects.nonNull(existCategory) && !existCategory.getId().equals(category.getId()),
-                category.getName() + "分类已存在");
+                category.getCategoryName() + "分类已存在");
         // 修改分类
         Category newCategory = Category.builder()
                                        .id(category.getId())
-                                       .name(category.getName())
+                                       .categoryName(category.getCategoryName())
                                        .build();
         baseMapper.updateById(newCategory);
     }

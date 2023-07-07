@@ -5,7 +5,6 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 /**
  * 文章后台VO
@@ -24,20 +23,31 @@ public class ArticleBackVO {
      * 文章缩略图
      */
     @ApiModelProperty(value = "文章缩略图")
-    private String cover;
+    private String articleCover;
 
     /**
      * 文章标题
      */
     @ApiModelProperty(value = "文章标题")
-    private String title;
-
+    private String articleTitle;
 
     /**
-     * 文章分类名
+     * 是否删除 (0否 1是)
+     */
+    @ApiModelProperty(value = "是否删除 (0否 1是)")
+    private Integer isDelete;
+
+    /**
+     * 状态 (1公开 2私密 3草稿)
+     */
+    @ApiModelProperty(value = "状态 (1公开 2私密 3草稿)")
+    private Integer status;
+
+    /**
+     * 文章分类ID
      */
     @ApiModelProperty(value = "文章分类ID")
-    private Integer cid;
+    private Integer categoryId;
 
 
     /**

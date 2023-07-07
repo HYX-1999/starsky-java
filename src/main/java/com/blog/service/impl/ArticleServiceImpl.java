@@ -10,6 +10,7 @@ import com.blog.mapper.BlogFileMapper;
 import com.blog.model.dto.ArticleDTO;
 import com.blog.model.dto.ConditionDTO;
 import com.blog.model.vo.ArticleBackVO;
+import com.blog.model.vo.ArticleHomeVO;
 import com.blog.model.vo.ArticleInfoVO;
 import com.blog.model.vo.PageResult;
 import com.blog.service.ArticleService;
@@ -55,11 +56,10 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     @Override
     public void addArticle(ArticleDTO article) {
         Article newArticle = Article.builder()
-                                    .cid(article.getCid())
-                                    .content(article.getContent())
-                                    .cover(article.getCover())
-                                    .title(article.getTitle())
-                                    .build();
+                                    .categoryId(article.getCategoryId())
+                                    .articleContent(article.getArticleContent())
+                                    .articleCover(article.getArticleCover())
+                                    .articleTitle(article.getArticleTitle()).status(article.getStatus()).build();
         baseMapper.insert(newArticle);
     }
 
@@ -105,5 +105,17 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
             e.printStackTrace();
         }
         return url;
+    }
+
+    @Override
+    public PageResult<ArticleHomeVO> listArticleHomeVO() {
+        // 查询文章数量
+        Long total = articleMapper.selectCount(new LambdaQueryWrapper<Article>().eq(Article::getIsDelete, 0).eq(Article::getStatus, 1));
+        if (total == 0) {
+            return new PageResult<>(new ArrayList<>(), total, null, null);
+        }
+        // 查询首页文章
+        List<ArticleHomeVO> articleHomeVOList = articleMapper.selectArticleHomeList(PageUtils.getLimit(), PageUtils.getSize());
+        return new PageResult<>(articleHomeVOList, total, PageUtils.getCurrent(), PageUtils.getSize());
     }
 }

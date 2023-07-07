@@ -23,7 +23,7 @@ public class CategoryBackVO {
      * 分类名
      */
     @ApiModelProperty(value = "分类名")
-    private String name;
+    private String categoryName;
 
     /**
      * 文章数量

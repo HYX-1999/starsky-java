@@ -21,23 +21,29 @@ public class ArticleInfoVO {
      * 文章分类id
      */
     @ApiModelProperty(value = "文章分类ID")
-    private Integer cid;
+    private Integer categoryId;
 
     /**
      * 文章缩略图
      */
     @ApiModelProperty(value = "文章缩略图")
-    private String cover;
+    private String articleCover;
 
     /**
      * 文章标题
      */
     @ApiModelProperty(value = "文章标题")
-    private String title;
+    private String articleTitle;
 
     /**
      * 文章内容
      */
     @ApiModelProperty(value = "文章内容")
-    private String content;
+    private String articleContent;
+
+    /**
+     * 状态 (1公开 2私密 3草稿)
+     */
+    @ApiModelProperty(value = "状态 (1公开 2私密 3草稿)")
+    private Integer status;
 }

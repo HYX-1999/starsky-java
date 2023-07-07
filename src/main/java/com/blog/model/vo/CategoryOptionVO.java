@@ -4,12 +4,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-/**
- * 分类列表
- */
 @Data
-@ApiModel(description = "分类列表")
-public class CategoryVO {
+@ApiModel(description = "分类选项VO")
+public class CategoryOptionVO {
 
     /**
      * 分类id
@@ -22,10 +19,4 @@ public class CategoryVO {
      */
     @ApiModelProperty(value = "分类名")
     private String categoryName;
-    /**
-     * 文章数量
-     */
-    @ApiModelProperty(value = "文章数量")
-    private Integer articleCount;
-
 }

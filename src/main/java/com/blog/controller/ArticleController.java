@@ -1,12 +1,10 @@
 package com.blog.controller;
 
 import cn.dev33.satoken.annotation.SaCheckPermission;
+import com.blog.annotation.VisitLogger;
 import com.blog.model.dto.ArticleDTO;
 import com.blog.model.dto.ConditionDTO;
-import com.blog.model.vo.ArticleBackVO;
-import com.blog.model.vo.ArticleInfoVO;
-import com.blog.model.vo.PageResult;
-import com.blog.model.vo.Result;
+import com.blog.model.vo.*;
 import com.blog.service.ArticleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -89,5 +87,17 @@ public class ArticleController {
     @PostMapping("/admin/article/upload")
     public Result<String> saveArticleImages(@RequestParam("file") MultipartFile file) {
         return Result.success(articleService.saveArticleImages(file));
+    }
+
+    /**
+     * 查看首页文章列表
+     *
+     * @return {@link Result<ArticleHomeVO>}
+     */
+    @VisitLogger(value = "首页")
+    @ApiOperation(value = "查看首页文章列表")
+    @GetMapping("/article/list")
+    public Result<PageResult<ArticleHomeVO>> listArticleHomeVO() {
+        return Result.success(articleService.listArticleHomeVO());
     }
 }

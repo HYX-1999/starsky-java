@@ -30,22 +30,32 @@ public class Article {
     /**
      * 文章分类
      */
-    private Integer cid;
+    private Integer categoryId;
 
     /**
      * 文章缩略图
      */
-    private String cover;
+    private String articleCover;
 
     /**
      * 文章标题
      */
-    private String title;
+    private String articleTitle;
 
     /**
      * 文章内容
      */
-    private String content;
+    private String articleContent;
+
+    /**
+     * 是否删除 (0否 1是)
+     */
+    private Integer isDelete;
+
+    /**
+     * 状态 (1公开 2私密 3草稿)
+     */
+    private Integer status;
 
     /**
      * 发表时间
