@@ -21,7 +21,7 @@ public class PageResult<T> {
      * 分页结果
      */
     @ApiModelProperty(value = "分页结果")
-    private List<T> record;
+    private List<T> records;
 
     /**
      * 总数

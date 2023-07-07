@@ -3,10 +3,10 @@
 <mapper namespace="com.blog.mapper.CategoryMapper">
 
     <select id="selectCategoryBackVO" resultType="com.blog.model.vo.CategoryBackVO">
-        SELECT c.id, c.name,COUNT(a.id) AS article_count,c.create_time
+        SELECT c.id, c.category_name,COUNT(a.id) AS article_count,c.create_time
         FROM category c
         LEFT JOIN article a
-        ON c.id = a.cid
+        ON c.id = a.category_id
         <where>
             <if test="keyword != null">
                 name like concat('%',#{keyword},'%')
@@ -19,10 +19,10 @@
 
     <select id="selectCategoryVO" resultType="com.blog.model.vo.CategoryVO">
         SELECT c.id,
-               c.name,
+               c.category_name,
                COUNT(a.id) AS article_count
         FROM category c
-        LEFT JOIN article a ON c.id = a.cid
+        LEFT JOIN article a ON c.id = a.category_id
         GROUP BY c.id
     </select>
 
